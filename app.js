@@ -61,7 +61,7 @@ app.get('/get/dataInvitation',(req , res , next) =>{  // path /
             {
                 let data = {
                     status : "success",
-                    data : result[0]
+                    data : result
                 }
                 res.json(data);
             }
