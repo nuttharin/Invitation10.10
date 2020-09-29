@@ -42,7 +42,6 @@ app.get('/get/dataInvitation',(req , res , next) =>{  // path /
     {
         if (err) throw err;
         let dbo = db.db(process.env.DATABASE_DATA_IOT);
-        var mysort = { dateTime : -1 };
         dbo.collection('Sheet1')
         .find()
         .toArray(function(err, result) 
