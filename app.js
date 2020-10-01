@@ -73,7 +73,43 @@ app.get('/get/dataInvitation',(req , res , next) =>{  // path /
 
 })
 
+app.get('/get/dataInvitationByID',(req , res , next) =>{  // path /
 
+    let id = req.query.id ;
+    MongoClient.connect(URL_MONGODB_IOT, function(err, db) 
+    {
+        if (err) throw err;
+        let dbo = db.db(process.env.DATABASE_DATA_IOT);
+        dbo.collection('Sheet1')
+        .find({ number : { $eq : id} })
+        .toArray(function(err, result) 
+        {
+            //console.log(moment(result[0].dateTime).format(' D/MM/YYYY h:mm:ss'))
+           
+            if (err) {
+                //console.log(err);  
+                let data = {
+                    status : "error",
+                    data : "query command error"
+                }   
+                res.json(data);
+            }
+            else
+            {
+                let data = {
+                    status : "success",
+                    data : result
+                }
+                res.json(data);
+            }
+
+            db.close();
+        });
+    });
+
+  
+
+})
 
 
 //set path
