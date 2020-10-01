@@ -111,7 +111,9 @@ app.get('/get/dataInvitationByID', (req , res , next) =>{  // path /
 
 app.post('/post/updateStatus',  (req , res , next) =>{ 
     let id = req.body.id ;
+
     let dbo = db.db(process.env.DATABASE_DATA_IOT);
+
     var myquery = { number : id };
     var newvalues = { $set: {status: "Y"} };
     dbo.collection("Sheet1")
