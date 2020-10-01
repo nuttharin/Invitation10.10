@@ -130,7 +130,7 @@ app.post('/post/updateStatus',  (req , res , next) =>{
             }
             db.close();
         });
-    }
+    })
 
 })
 
