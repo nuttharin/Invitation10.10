@@ -119,7 +119,7 @@ app.post('/post/updateStatus',  (req , res , next) =>{
         var myquery = { number : id };
         var newvalues = { $set: {status: "Y"} };
         dbo.collection("Sheet1")
-        .updateOne(myquery, newvalues, function(err, res) {
+        .updateOne(myquery, newvalues, function(err, result) {
             if (err) throw err;
             else {
                 let data = {
