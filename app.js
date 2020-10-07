@@ -135,6 +135,37 @@ app.post('/post/updateStatus',  (req , res , next) =>{
 
 })
 
+app.post('/post/insertGuest', (req, res ,next)=>{
+
+    let data = req.body.name ;
+    MongoClient.connect(URL_MONGODB_IOT,function(err,db){
+        let dbo = db.db(process.env.DATABASE_DATA_IOT);
+        dbo.collection("tb_test")
+        .insertOne( { 
+            name : data , status: "Y"
+        } ,(err,result) =>
+        {
+            if(err)
+            {
+                // console.log("error")
+                // throw err;
+                res.status(200).json({
+                    status : "error",
+                    data : ""
+                });
+            }
+            else
+            {
+                //console.log("insert complete");
+                res.status(200).json({
+                    status : "success",
+                    data : ""
+                });
+
+            }
+        });
+    });  
+})
 //set path
 
 module.exports = app ;
